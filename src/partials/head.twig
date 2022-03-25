@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	{% set meta = {
+		title: "AO Studio",
+		description: "Experienced Digital UI/UX Designer slash Front-End Developer from Moldova, with a demonstrated history of working in the industry; currently located in Italy.",
+		keywords: "Alex, Obreja, Studio, Web Development, Design, User Experience, Interface, Graphics",
+		project_title: "AO Studio",
+		project_link: "asertym.bitbucket.io",
+		preview_link: "https://asertym.bitbucket.io/images/temp.jpg",
+		image: "asertym.bitbucket.io/images/logo.png",
+		author: "asertym/orisissmd",
+		revisit: "5"
+	}%}
+	{% include 'meta.twig' with meta %}
+
+	<link rel="stylesheet" href="assets/styles/style.css">
+
+	{% include "project-config.twig" %}
+
+</head>

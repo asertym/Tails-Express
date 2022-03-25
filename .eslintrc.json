@@ -1,0 +1,17 @@
+{
+	"extends": [
+		"eslint:recommended",
+		"standard"
+	],
+	"parserOptions": {
+		"parser": "babel-eslint"
+	},
+	"rules": {
+		"no-console": "off",
+		"quotes": ["error", "single", { "avoidEscape": true, "allowTemplateLiterals": true }],
+		"indent": ["error", "tab"],
+		"comma-dangle": ["error", "always-multiline"],
+		"semi": ["error", "always"],
+		"no-unused-vars": ["warn", "all"]
+	}
+}

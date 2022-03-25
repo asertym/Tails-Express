@@ -1,0 +1,56 @@
+@use 'sass:math';
+
+// Roots
+$dark: #102a3d;
+$theme: #4656f3;
+$light: #d0d4fb;
+$orange: #f86734;
+$navy: #073042;
+$grey: #f2f2f2;
+$green: #3ddc84;
+
+$blue: $theme;
+
+// Transition
+$transition: all 0.15s ease-in-out;
+
+// Border Radius
+$radius: 16px;
+
+// Fonts
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap");
+
+// Mixins
+
+// This makes the font responsive (ty CSSTricks)
+@function strip-unit($value) {
+	@return math.div($value, $value * 0 + 1);
+}
+
+@mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
+	$u1: unit($min-vw);
+	$u2: unit($max-vw);
+	$u3: unit($min-font-size);
+	$u4: unit($max-font-size);
+
+	@if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+		& {
+			font-size: $min-font-size;
+			@media screen and (min-width: $min-vw) {
+				font-size: calc(
+					#{$min-font-size} + #{strip-unit(
+							$max-font-size - $min-font-size
+						)} *
+						(
+							(100vw - #{$min-vw}) / #{strip-unit(
+									$max-vw - $min-vw
+								)}
+						)
+				);
+			}
+			@media screen and (min-width: $max-vw) {
+				font-size: $max-font-size;
+			}
+		}
+	}
+}
