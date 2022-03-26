@@ -1,46 +1,53 @@
 // Gulp 4 Configuration
 
+const { default: gulpSquoosh } = require("gulp-squoosh");
+
 // General
-var gulp = require("gulp"),
-		changed = require("gulp-changed"),
-		plumber = require("gulp-plumber"),
-		notify = require("gulp-notify"),
-		del = require('del');
-		browser = require("browser-sync").create(),
+const gulp = require("gulp"),
+			changed = require("gulp-changed"),
+			cache = require("gulp-cache"),
+			plumber = require("gulp-plumber"),
+			notify = require("gulp-notify"),
+			del = require('del'),
+			fs = require('fs'),
+			path = require('path'),
+			browser = require("browser-sync").create(),
+			// HTML related
+			twig = require("gulp-twig"),
+			htmlmin = require("gulp-htmlmin"),
+			// CSS related
+			sass = require("gulp-sass")(require('sass')),
+			sassGlob = require('gulp-sass-glob'),
+			postcss = require("gulp-postcss"),
+			sourcemaps = require("gulp-sourcemaps"),
+			purgecss = require("gulp-purgecss"), // gulp-clean-css
+			// JS & Assets related
+			uglify = require("gulp-uglify"),
+			imagemin = require("gulp-squoosh"),
+			// Directories
+			PATH = {
+				build: 'build/',
+				source: 'src/',
 
-		// HTML related
-		twig = require("gulp-twig"),
-		htmlmin = require("gulp-htmlmin"),
+				assets: 'assets/',
+				icons: 'icons/',
+				symbolIcons: 'symbols/',
+				inlineIcons: 'inline/',
+				images: 'images/',
+				styles: 'styles/',
+				maps: '/maps',
+				scripts: 'scripts/',
 
-		// CSS related
-		sass = require("gulp-sass")(require('sass')),
-		sassGlob = require('gulp-sass-glob'),
-		postcss = require("gulp-postcss"),
-		tailwind = require("tailwindcss"),
-		sourcemaps = require("gulp-sourcemaps"),
-		purgecss = require("gulp-purgecss"), // gulp-clean-css
+				includes: 'includes/',
+				partials: 'partials/',
+			};
 
-		// JS & Assets related
-		uglify = require("gulp-uglify"),
-		imagemin = require('gulp-imagemin'),
+const DEFAULT_PROJECT_CONFIG = {
+	assetDistributionDirectories: [{ directory: PATH.build + PATH.assets }],
+};
 
-		// Directories
-		PATH = {
-			build: 'build/',
-			source: 'src/',
-
-			assets: 'assets/',
-			icons: 'icons/',
-			symbolIcons: 'symbols/',
-			inlineIcons: 'inline/',
-			images: 'images/',
-			styles: 'styles/',
-			maps: '/maps',
-			scripts: 'scripts/',
-
-			includes: 'includes/',
-			partials: 'partials/',
-		};
+const PROJECT_CONFIG = fs.existsSync('./project.config.js') ? require(path.resolve('project.config')) : DEFAULT_PROJECT_CONFIG;
+let browserSyncActive = false;
 
 // Makes the OS notification a bit more useful in case of error
 const onError = function (err) {
@@ -67,6 +74,7 @@ gulp.task("html", function () {
 gulp.task("images", () => {
 	return gulp
 		.src(PATH.source + PATH.assets + PATH.images + '**')
+		.pipe(cache(imagemin()))
 		.pipe(gulp.dest(PATH.build + PATH.assets + PATH.images)
 	);
 });
@@ -110,14 +118,23 @@ gulp.task("scripts", function () {
 		.pipe(browser.stream());
 });
 
-// Browsersync
-// Server & File Ward
-gulp.task("pack", function () {
+function initBrowserSync () {
+	const browserConfig = PROJECT_CONFIG.browserSync;
 	browser.init({
 		server: {
 			baseDir: PATH.build,
 		},
+		// proxy: browserConfig.localUrl,
+		ghostMode: browserConfig.ghostMode,
+		open: browserConfig.open,
 	});
+	browserSyncActive = true;
+}
+
+// Browsersync
+// Server & File Ward
+gulp.task("pack", function () {
+	initBrowserSync();
 	gulp.watch(PATH.source + PATH.assets + PATH.styles, gulp.series("styles"));
 	gulp.watch(PATH.source + PATH.assets + PATH.scripts, gulp.series("scripts"));
 	gulp.watch([
@@ -152,6 +169,6 @@ gulp.task('cleanAssets', () => {
 
 // launcher
 gulp.task('build', gulp.series('cleanAssets', gulp.parallel('styles', 'html', 'images', 'scripts')));
-gulp.task('min', gulp.parallel('images', 'purgehtml')); //fix
+gulp.task('min', gulp.parallel('purgehtml')); //fix
 gulp.task('run', gulp.series('build', 'pack'));
 gulp.task("publish", gulp.series('build', 'min'));

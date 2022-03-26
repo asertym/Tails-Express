@@ -29,7 +29,7 @@ Some of the **key features** of Tails include:
 ## Gulp commands
 | Command | Description |
 | --- | --- |
-| `gulp build` | Build all files for dev |
-| `gulp min` | Minify HTML/Images |
+| `gulp build` | Build all files for dev & cleans assets _(see below)_ |
+| `gulp cleanAssets` | Clean all files from `build/assets` |
 | `gulp run` | Build all files and start live server |
 | `gulp publish` | Build all files and minify for production |
