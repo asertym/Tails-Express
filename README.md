@@ -6,7 +6,7 @@
 
 Tails Express is a web framework aimed at being used as a boilerplate _(is that the word?)_ for your small to medium size projects, while being as lightweight and optimized as possible.
 
-Some of the **key features** of Tails express include:
+Some of the **key features** of Tails Express include:
 - TailwindCSS (hence the name)
 - Vue/Alpine friendly
 - TwigJS
