@@ -1,12 +1,12 @@
-<!-- Tails v2.0.0.211208 -->
+<!-- Tails Express v2.0.0.211208 -->
 
-# Tails
+# Tails Express
 
 ## About the Project
 
-Tails is a web framework aimed at being used as a boilerplate _(is that the word?)_ for your small to medium size projects, while being as lightweight and optimized as possible.
+Tails Express is a web framework aimed at being used as a boilerplate _(is that the word?)_ for your small to medium size projects, while being as lightweight and optimized as possible.
 
-Some of the **key features** of Tails include:
+Some of the **key features** of Tails express include:
 - TailwindCSS (hence the name)
 - Vue/Alpine friendly
 - TwigJS
