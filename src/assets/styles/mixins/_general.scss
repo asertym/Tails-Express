@@ -1,0 +1,25 @@
+// Transitions
+
+@mixin transition($duration: 150ms, $timing: $ease-in-out, $property: all) {
+	transition-property: $property;
+	transition-duration: $duration;
+	transition-timing-function: $timing;
+}
+
+// Typography
+@mixin typography($size, $height: 1) {
+	font-size: $size;
+	line-height: $height;
+}
+
+// Flex
+@mixin flex($align: null, $justify: null) {
+	display: flex;
+	@if $align {
+		align-items: $align;
+	}
+
+	@if $justify {
+		justify-content: $justify;
+	}
+}

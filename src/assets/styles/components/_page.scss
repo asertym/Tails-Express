@@ -1,0 +1,21 @@
+.page {
+	$block: &;
+	@apply overflow-hidden;
+
+	&::after {
+		@apply fixed inset-0 opacity-0 invisible pointer-events-auto;
+
+		content: '';
+		z-index: $z-index-page-dimmer;
+	}
+
+	.is-dimmed & {
+		&::after {
+			@apply visible pointer-events-auto opacity-100;
+		}
+	}
+
+	.is-locked & {
+		@apply fixed left-0 w-full;
+	}
+}

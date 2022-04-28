@@ -1,0 +1,17 @@
+body, input, select, textarea {
+	font-family: $font-family;
+}
+
+a {
+	color: $primary;
+	text-decoration: none;
+}
+
+p {
+	@apply mt-0;
+
+	margin-bottom: 1em;
+	&:last-child {
+		@apply mb-0;
+	}
+}
