@@ -6,4 +6,12 @@ module.exports = {
 		open: true, // Decide which URL to open automatically when Browsersync starts. Use false to disable.
 		ghostMode: false, // Clicks, Scrolls & Form inputs on any device will be mirrored to all others.
 	},
+
+	twig: {
+		data: {
+			tails: {
+				assets: '/assets/', // Assets folder
+			}
+		}
+	}
 }

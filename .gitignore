@@ -1,2 +1,23 @@
 node_modules
 build
+
+### Sass ###
+.sass-cache/
+*.css.map
+
+### VSCCode ###
+.settings/
+.vscode/
+
+# Optional npm cache directory
+.npm
+
+### OSX ###
+.DS_Store
+.AppleDouble
+.LSOverride
+
+### Windows ###
+# Windows image file caches
+Thumbs.db
+ehthumbs.db

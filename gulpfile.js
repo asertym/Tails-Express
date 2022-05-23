@@ -12,6 +12,7 @@ const gulp = require("gulp"),
 			fs = require('fs'),
 			path = require('path'),
 			browser = require("browser-sync").create(),
+			log = require("fancy-log"),
 			// HTML related
 			twig = require("gulp-twig"),
 			htmlmin = require("gulp-htmlmin"),
@@ -62,7 +63,7 @@ const onError = function (err) {
 gulp.task("html", function () {
 	return gulp
 		.src(PATH.source + '*.twig') // source
-		.pipe(twig())
+		.pipe(twig(PROJECT_CONFIG.twig)) // twig config
 		.pipe(
 			plumber({
 				errorHandler: onError,
@@ -78,6 +79,13 @@ gulp.task("images", () => {
 		.pipe(gulp.dest(PATH.build + PATH.assets + PATH.images)
 	);
 });
+
+gulp.task("fonts", () => {
+	return gulp
+		.src(PATH.source + PATH.assets + PATH.fonts + '**')
+		.pipe(gulp.dest(PATH.build + PATH.assets + PATH.fonts)
+	);
+})
 
 gulp.task("styles", function () {
 	const stylesPath = PATH.assets + PATH.styles;
@@ -114,7 +122,7 @@ gulp.task("scripts", function () {
 		)
 		.pipe(changed(PATH.source + scriptsPath + '**/*.js')) // source
 		.pipe(uglify())
-		.pipe(gulp.dest(PATH.build + scriptsPath + '**/*.js')) // output
+		.pipe(gulp.dest(PATH.build + scriptsPath)) // output
 		.pipe(browser.stream());
 });
 
