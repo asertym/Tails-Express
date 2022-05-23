@@ -1,5 +1,17 @@
-// Transitions
+//To Rem
+@mixin toRem($property, $value) {
+	#{$property}: calc($value / 16) + rem;
+}
 
+// Containers
+@each $name,
+$size in $breakpoints {
+	.container-#{$name} {
+		@apply max-w-screen-#{$name} mx-auto;
+	}
+}
+
+// Transitions
 @mixin transition($duration: 150ms, $timing: $ease-in-out, $property: all) {
 	transition-property: $property;
 	transition-duration: $duration;
