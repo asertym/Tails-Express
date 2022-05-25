@@ -1,7 +1,5 @@
 // Gulp 4 Configuration
 
-const { default: gulpSquoosh } = require("gulp-squoosh");
-
 // General
 const gulp = require("gulp"),
 			changed = require("gulp-changed"),
@@ -24,7 +22,6 @@ const gulp = require("gulp"),
 			purgecss = require("gulp-purgecss"), // gulp-clean-css
 			// JS & Assets related
 			uglify = require("gulp-uglify"),
-			imagemin = require("gulp-squoosh"),
 			// Directories
 			PATH = {
 				build: 'build/',
@@ -73,10 +70,11 @@ gulp.task("html", function () {
 });
 
 gulp.task("images", () => {
+	const imagesPath = PATH.assets + PATH.images;
 	return gulp
-		.src(PATH.source + PATH.assets + PATH.images + '**')
-		.pipe(cache(imagemin()))
-		.pipe(gulp.dest(PATH.build + PATH.assets + PATH.images)
+		.src(PATH.source + imagesPath + '**/*')
+		.pipe(changed(PATH.build + imagesPath))
+		.pipe(gulp.dest(PATH.build + imagesPath)
 	);
 });
 
@@ -143,8 +141,15 @@ function initBrowserSync () {
 // Server & File Ward
 gulp.task("pack", function () {
 	initBrowserSync();
-	gulp.watch(PATH.source + PATH.assets + PATH.styles, gulp.series("styles"));
+	gulp.watch([
+		PATH.source + PATH.assets + PATH.styles,
+		'tailwind.config.js',
+		PATH.source + '*.twig',
+		PATH.source + PATH.includes + '**/*.twig',
+		PATH.source + PATH.partials + '**/*.twig',
+	], gulp.series("styles"));
 	gulp.watch(PATH.source + PATH.assets + PATH.scripts, gulp.series("scripts"));
+	gulp.watch(PATH.source + PATH.assets + PATH.images, gulp.series("images"));
 	gulp.watch([
 		PATH.source + '*.twig',
 		PATH.source + PATH.includes + '**/*.twig',
