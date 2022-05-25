@@ -1,6 +1,10 @@
 <!-- Tails Express v2.0.0.211208 -->
-
 # Tails Express
+
+<p>
+	<img src="./.github/express-logo-light.svg#gh-light-mode-only" alt="Tailwind CSS" width="292" height="92">
+	<img src="./.github/express-logo-dark.svg#gh-dark-mode-only" alt="Tailwind CSS" width="292" height="92">
+</p>
 
 ## About the Project
 
@@ -33,3 +37,7 @@ Some of the **key features** of Tails Express include:
 | `gulp cleanAssets` | Clean all files from `build/assets` |
 | `gulp run` | Build all files and start live server |
 | `gulp publish` | Build all files and minify for production |
+
+## Contributing
+
+If you're interested in contributing to Tails or Tails Express, please read our [contributing docs](https://github.com/asertym/Tails-Express/blob/master/.github/CONTRIBUTING.md) **before submitting a pull request**.
