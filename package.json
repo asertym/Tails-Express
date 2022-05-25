@@ -4,7 +4,7 @@
   "description": "Just another web framework",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "style": "eslint ."
   },
   "repository": {
     "type": "git",
