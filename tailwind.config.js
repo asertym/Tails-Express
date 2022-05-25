@@ -2,6 +2,9 @@ module.exports = {
   content: ['./src/**/*.{twig,js,vue}'],
   theme: {
     extend: {},
+    container: {
+      center: false, // default: false
+    },
   },
   plugins: [
 		require('@tailwindcss/forms'),
