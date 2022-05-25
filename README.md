@@ -1,6 +1,11 @@
 <!-- Tails Express v2.0.0.220524 -->
 # Tails Express
 
+<p>
+	<img src="./.github/express-logo-light.svg#gh-light-mode-only" alt="Tailwind CSS" width="292" height="92">
+	<img src="./.github/express-logo-dark.svg#gh-dark-mode-only" alt="Tailwind CSS" width="292" height="92">
+</p>
+
 ## About the Project
 
 Tails Express is a web framework aimed at being used as a boilerplate _(is that the word?)_ for your small to medium size projects, while being as lightweight and optimized as possible.
