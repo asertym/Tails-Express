@@ -27,6 +27,7 @@
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "@tailwindcss/forms": "^0.5.0",
     "@tailwindcss/line-clamp": "^0.3.1",
+    "autoprefixer": "^10.4.7",
     "browser-sync": "^2.27.9",
     "del": "^6.0.0",
     "domready": "^1.0.8",

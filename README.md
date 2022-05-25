@@ -1,4 +1,4 @@
-<!-- Tails Express v2.0.0.220524 -->
+<!-- Tails Express v2.0.0.220525 -->
 # Tails Express
 
 <p>
