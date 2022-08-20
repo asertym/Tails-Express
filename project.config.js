@@ -10,7 +10,13 @@ module.exports = {
 	twig: {
 		data: {
 			tails: {
-				assets: '/assets/', // Assets folder
+				// Projects folders
+				assets: '/assets', // Path to the assets folder
+				styles: '/assets/styles', // Path to the styles folder
+				scripts: '/assets/scripts', // Path to the scripts folder
+				images: '/assets/images', // Path to the images folder
+
+				// Add any data you want to be available in your Twig templates
 			}
 		}
 	}

@@ -69,22 +69,6 @@ gulp.task("html", function () {
 		.pipe(gulp.dest(PATH.build)); // output destination
 });
 
-gulp.task("images", () => {
-	const imagesPath = PATH.assets + PATH.images;
-	return gulp
-		.src(PATH.source + imagesPath + '**/*')
-		.pipe(changed(PATH.build + imagesPath))
-		.pipe(gulp.dest(PATH.build + imagesPath)
-	);
-});
-
-gulp.task("fonts", () => {
-	return gulp
-		.src(PATH.source + PATH.assets + PATH.fonts + '**')
-		.pipe(gulp.dest(PATH.build + PATH.assets + PATH.fonts)
-	);
-})
-
 gulp.task("styles", function () {
 	const stylesPath = PATH.assets + PATH.styles;
 	return gulp
@@ -108,6 +92,22 @@ gulp.task("styles", function () {
 		.pipe(gulp.dest(PATH.build + stylesPath)) // output
 		.pipe(browser.stream());
 });
+
+gulp.task("images", () => {
+	const imagesPath = PATH.assets + PATH.images;
+	return gulp
+		.src(PATH.source + imagesPath + '**/*')
+		.pipe(changed(PATH.build + imagesPath))
+		.pipe(gulp.dest(PATH.build + imagesPath)
+	);
+});
+
+gulp.task("fonts", () => {
+	return gulp
+		.src(PATH.source + PATH.assets + PATH.fonts + '**')
+		.pipe(gulp.dest(PATH.build + PATH.assets + PATH.fonts)
+	);
+})
 
 gulp.task("scripts", function () {
 	const scriptsPath = PATH.assets + PATH.scripts;
@@ -137,7 +137,6 @@ function initBrowserSync () {
 	browserSyncActive = true;
 }
 
-// Browsersync
 // Server & File Ward
 gulp.task("pack", function () {
 	initBrowserSync();
@@ -180,7 +179,7 @@ gulp.task('cleanAssets', () => {
 	return del(PATH.build + PATH.assets);
 });
 
-// launcher
+// Launcher
 gulp.task('build', gulp.series('cleanAssets', gulp.parallel('styles', 'html', 'images', 'scripts')));
 gulp.task('min', gulp.parallel('purgehtml')); //fix
 gulp.task('run', gulp.series('build', 'pack'));
