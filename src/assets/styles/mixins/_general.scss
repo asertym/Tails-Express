@@ -4,28 +4,32 @@
 }
 
 // Containers
-@each $name,
-$size in $breakpoints {
+@each $name, $size in $breakpoints {
 	.container-#{$name} {
 		@apply max-w-screen-#{$name} mx-auto;
 	}
 }
 
-// Transitions
-@mixin transition($duration: 150ms, $timing: $ease-in-out, $property: all) {
+//// Transitions
+@mixin transition($duration: 150ms, $timing: ease-in-out, $property: all) {
 	transition-property: $property;
 	transition-duration: $duration;
 	transition-timing-function: $timing;
 }
 
-// Typography
-@mixin typography($size, $height: 1) {
-	font-size: $size;
-	line-height: $height;
+//// Typography
+@mixin typography($size, $height: null) {
+	@include toRem("font-size", $size);
+	@if $height {
+		line-height: calc($height / $size); // height given in pixels
+	} @else {
+		line-height: 1;
+	}
 }
 
+//// Positioning
 // Flex
-@mixin flex($align: null, $justify: null) {
+@mixin flex($align: null, $justify: null, $direction: null) {
 	display: flex;
 	@if $align {
 		align-items: $align;
@@ -34,4 +38,43 @@ $size in $breakpoints {
 	@if $justify {
 		justify-content: $justify;
 	}
+	@if $direction {
+		flex-direction: $direction;
+	}
+}
+
+//// Images
+
+// Object Fit
+@mixin objectfit($size: cover, $position: center) {
+	width: 100%;
+	height: 100%;
+	object-fit: $size;
+	object-position: $position;
+}
+
+// Aspect Ratio
+@mixin aspect($ratio: 1 1) {
+	position: relative;
+	width: 100%;
+	height: 0;
+	@if $ratio {
+		padding-bottom: calc((nth($ratio, 2) / nth($ratio, 1)) * 100%);
+	}
+	figure {
+		@include fillout;
+
+		video,
+		img {
+			@include objectfit;
+		}
+	}
+}
+
+//// Others
+
+@mixin pseudo($display: block, $pos: absolute, $content: "") {
+	content: $content;
+	display: $display;
+	position: $pos;
 }
