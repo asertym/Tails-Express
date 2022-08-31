@@ -1,3 +1,6 @@
-@mixin fillout() {
-	@apply absolute inset-0;
+@mixin fillout($inset: 0) {
+	@apply absolute;
+	@if inset {
+		inset: $inset;
+	}
 }

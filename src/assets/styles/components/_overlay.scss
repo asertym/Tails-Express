@@ -2,7 +2,7 @@
 	$block: &;
 	@apply relative flex items-center justify-center p-4;
 
-	z-index: $z-index-overlay;
+	z-index: $z-overlay;
 
 	&__content {
 		@apply bg-white w-full relative shadow;

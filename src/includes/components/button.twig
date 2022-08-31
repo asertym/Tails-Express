@@ -1,0 +1,15 @@
+{% set tag = 'button' %}
+{% set tag = link ? 'a' : tag %}
+<{{tag}} {{ link ? 'href="' ~ link ~ '"' : ''}} {{target ? 'target="' ~ target ~ '"' : ''}} class="button button--style--{{style|default('default')}} button--size--{{size|default('regular')}} {{class ? ' ' ~ class : ''}}" {{ custom_attribute}} {{ type ? 'type="' ~ type ~ '"' : '' }} {{external ? 'rel="noopener noreferrer nofollow"' : ''}}>
+	<div class="button__inner">
+		<div class="button__label">{{label}}</div>
+		{% if icon %}
+			<div class="button__icon">
+				{% include "icon.twig" with {
+					type: 'image',
+					icon: icon,
+				} %}
+			</div>
+		{% endif %}
+	</div>
+</{{tag}}>

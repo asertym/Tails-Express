@@ -1,4 +1,7 @@
-body, input, select, textarea {
+body,
+input,
+select,
+textarea {
 	font-family: $font-family;
 }
 
@@ -8,10 +11,7 @@ a {
 }
 
 p {
-	@apply mt-0;
-
-	margin-bottom: 1em;
-	&:last-child {
-		@apply mb-0;
+	&:not(:last-child) {
+		margin-bottom: 1em;
 	}
 }

@@ -1,16 +1,16 @@
 @import "roots";
 @import "mixins/*";
 @import "vendors";
-@import 'utils/*';
-@import 'components/*';
+@import "utils/*";
+@import "components/*";
 
 // General
+
+// Include fluid type and smooth scrolling
 $min_width: 320px;
 $max_width: 1400px;
 $min_font: 10px;
 $max_font: 16px;
-
-// Include fluid type and smooth scrolling
 
 html {
 	@include fluid-type($min_width, $max_width, $min_font, $max_font);

@@ -3,18 +3,29 @@
 	#{$property}: calc($value / 16) + rem;
 }
 
+@mixin colors($text, $background, $border) {
+	color: $text;
+	background: $background;
+	border: 1px solid $border;
+}
+
+$values: #ff0000, #00ff00, #0000ff;
+
+.style {
+	@include colors($values...);
+}
+
 // Containers
-@each $name,
-$size in $breakpoints {
+@each $name, $size in $breakpoints {
 	.container-#{$name} {
 		@apply max-w-screen-#{$name} mx-auto;
 	}
 }
 
 // Transitions
-@mixin transition($duration: 150ms, $timing: $ease-in-out, $property: all) {
-	transition-property: $property;
-	transition-duration: $duration;
+@mixin transition($prop: all, $dur: $duration-sm, $timing: ease-in-out) {
+	transition-property: $prop;
+	transition-duration: $dur;
 	transition-timing-function: $timing;
 }
 
@@ -33,5 +44,23 @@ $size in $breakpoints {
 
 	@if $justify {
 		justify-content: $justify;
+	}
+}
+
+@mixin pseudo($display: block, $pos: absolute, $content: "") {
+	content: $content;
+	display: $display;
+	position: $pos;
+}
+
+@mixin breakpoint-up($breakpoint) {
+	@media (min-width: map-get($breakpoints, $breakpoint)) {
+		@content;
+	}
+}
+
+@mixin breakpoint-down($breakpoint) {
+	@media (max-width: map-get($breakpoints, $breakpoint)) {
+		@content;
 	}
 }

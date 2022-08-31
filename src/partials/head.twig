@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-{% set meta = {
-	title: "Welcome to Tails Express",
-	description: "",
-	keywords: "",
-	project_title: "",
-	project_link: "",
-	preview_link: "",
-	image: "",
-	author: "",
-	revisit: ""
-}%}
-{% include 'meta.twig' with meta %}
+	<head>
+		{% set meta = {
 
-{% include 'styles.twig' %}
-</head>
+		}%}
+		{% include 'meta.twig' with {
+			title: "Welcome to Tails Express",
+			description: "",
+			keywords: "",
+			project_title: "",
+			project_link: "",
+			preview_link: "",
+			image: "",
+			author: "",
+		} %}
 
-<body>
-	<div class="page">
+		{% include 'styles.twig' %}
+	</head>
+
+	<body>
+		<div class="page">

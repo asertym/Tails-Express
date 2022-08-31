@@ -1,0 +1,21 @@
+.js-on-screen {
+	@apply opacity-0 relative;
+	@include transition($dur: 300ms);
+	$distance: 50px;
+	&.from-top {
+		transform: translateY(-$distance) translateZ(0);
+	}
+	&.from-right {
+		transform: translateX($distance) translateZ(0);
+	}
+	&.from-bottom {
+		transform: translateY($distance) translateZ(0);
+	}
+	&.from-left {
+		transform: translateX(-$distance) translateZ(0);
+	}
+	&.is-on-screen {
+		opacity: 1;
+		transform: none;
+	}
+}

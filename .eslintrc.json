@@ -1,17 +1,28 @@
 {
-	"extends": [
-		"eslint:recommended",
-		"standard"
-	],
-	"parserOptions": {
-		"parser": "babel-eslint"
-	},
+	"extends": ["eslint:recommended", "standard", "plugin:vue/essential"],
+	"plugins": ["vue"],
+	"parser": "vue-eslint-parser",
+	"ignorePatterns": ["gulpfile.js"],
 	"rules": {
 		"no-console": "off",
-		"quotes": ["error", "single", { "avoidEscape": true, "allowTemplateLiterals": true }],
-		"indent": ["error", "tab"],
+		"quotes": [
+			"error",
+			"single",
+			{ "avoidEscape": true, "allowTemplateLiterals": true }
+		],
+		"indent": ["error", "tab", { "SwitchCase": 1 }],
 		"comma-dangle": ["error", "always-multiline"],
 		"semi": ["error", "always"],
-		"no-unused-vars": ["warn", "all"]
-	}
+		"no-unused-vars": ["warn", "all"],
+		"no-tabs": ["error", { "allowIndentationTabs": true }]
+	},
+	"overrides": [
+		{
+			"files": ["*.vue"],
+			"rules": {
+				"indent": ["error", 4],
+				"no-invalid-this": "off"
+			}
+		}
+	]
 }

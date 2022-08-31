@@ -1,6 +1,6 @@
 // Typography
-$font-family: 'Inter', ui-sans-serif, sans-serif;
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+$font-family: "Inter", ui-sans-serif, sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
 
 // Colors
 $dark: #102a3d;
@@ -15,24 +15,31 @@ $primary: $blue;
 
 // Breakpoints
 $breakpoints: (
-	'sm': '640px',
-	'md': '768px',
-	'lg': '1024px',
-	'xl': '1280px',
-	'2xl': '1536px',
+	"sm": "640px",
+	"md": "768px",
+	"lg": "1024px",
+	"xl": "1280px",
+	"2xl": "1536px",
 );
 
 // Border Radius
 $radius: 16px;
 
 // Z-indexes
-$z-index-page-dimmer: 100;
-$z-index-overlay: 120;
+$z-base: 100;
+$z-above: 1;
+$z-below: -1;
+
+$z-header: $z-base;
+$z-footer: $z-base;
+$z-nav: $z-header + $z-above;
+$z-modal: $z-nav + $z-above;
+
+$z-page-dimmer: $z-base - $z-below;
+$z-overlay: $z-base + $z-above;
 
 // Transitions
 $duration-sm: 150ms;
 $duration: 250ms;
 $duration-lg: 350ms;
 $duration-xl: 500ms;
-
-$transition: all 0.15s ease-in-out;

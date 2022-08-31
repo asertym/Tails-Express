@@ -1,5 +1,5 @@
 // This makes the font responsive (ty CSSTricks)
-@use 'sass:math';
+@use "sass:math";
 
 @function strip-unit($value) {
 	@return math.div($value, $value * 0 + 1);
@@ -16,8 +16,8 @@
 			font-size: $min-font-size;
 			@media screen and (min-width: $min-vw) {
 				font-size: calc(
-					#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)}
-					* ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)})
+					#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} *
+						((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)})
 				);
 			}
 			@media screen and (min-width: $max-vw) {

@@ -1,0 +1,9 @@
+{% set type = type|default('inline') %}
+<div class="icon {{class}}">
+	{% if type == 'inline' %}
+		{{ source('build' ~ tails.icons ~ icon ~ '.svg') }}
+	{% elseif type == 'image' %}
+		<img src="{{tails.icons ~ icon ~ '.svg'}}" alt="">
+		{% else %}
+	{% endif %}
+</div>

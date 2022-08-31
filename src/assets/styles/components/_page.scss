@@ -5,8 +5,8 @@
 	&::after {
 		@apply fixed inset-0 opacity-0 invisible pointer-events-auto;
 
-		content: '';
-		z-index: $z-index-page-dimmer;
+		content: "";
+		z-index: $z-page-dimmer;
 	}
 
 	.is-dimmed & {
