@@ -1,4 +1,5 @@
-<!-- Tails Express v2.0.0.220525 -->
+<!-- Tails Express v2.0.0.220831 -->
+
 # Tails Express
 
 <p>
@@ -14,6 +15,7 @@
 Tails Express is a web framework aimed at being used as a boilerplate _(is that the word?)_ for your small to medium size projects, while being as lightweight and optimized as possible.
 
 Some of the **key features** of Tails Express include:
+
 - TailwindCSS (hence the name)
 - JS Framework Friendly (Vue, React, Alpine, etc)
 - TwigJS
@@ -34,12 +36,14 @@ Some of the **key features** of Tails Express include:
 4. Done.
 
 ## Gulp commands
-| Command | Description |
-| --- | --- |
-| `gulp build` | Build all files for dev & cleans assets _(see below)_ |
-| `gulp cleanAssets` | Clean all files from `build/assets` |
-| `gulp run` | Build all files and start live server |
-| `gulp publish` | Build all files and minify for production |
+
+| Command              | Description                               |
+| -------------------- | ----------------------------------------- |
+| `gulp build`         | Cleans and rebuilds assets, builds HTML   |
+| `gulp rebuildAssets` | Clean all files from `build/assets`       |
+| `gulp min`           | Minify for production                     |
+| `gulp run`           | Build all files and start live server     |
+| `gulp publish`       | Build all files and minify for production |
 
 ## Contributing
 

@@ -57,6 +57,14 @@ const onError = function (err) {
 	this.emit('end');
 };
 
+function getMode () {
+	return argv.mode;
+}
+
+function getDropConsole () {
+	return argv.dropConsole;
+}
+
 // Compile Twig to HTML
 gulp.task('html', function () {
 	return gulp
@@ -208,17 +216,11 @@ gulp.task('cleanAssets', () => {
 	return del(PATH.build + PATH.assets);
 });
 
-function getMode () {
-	return argv.mode;
-}
-
-function getDropConsole () {
-	return argv.dropConsole;
-}
+gulp.task('buildAssets', gulp.parallel('styles', 'images', 'icons', 'scripts'));
 
 // Launcher
-gulp.task('buildAssets', gulp.parallel('styles', 'images', 'icons', 'scripts'));
-gulp.task('build', gulp.series('cleanAssets', 'buildAssets', 'html'));
-gulp.task('min', gulp.parallel('purgehtml')); // fix
+gulp.task('rebuildAssets', gulp.series('cleanAssets', 'buildAssets'));
+gulp.task('build', gulp.series('rebuildAssets', 'html'));
+gulp.task('min', gulp.parallel('purgehtml')); // TODO: add assets
 gulp.task('run', gulp.series('build', 'pack'));
 gulp.task('publish', gulp.series('build', 'min'));
