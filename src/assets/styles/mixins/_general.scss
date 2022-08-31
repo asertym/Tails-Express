@@ -29,14 +29,19 @@ $values: #ff0000, #00ff00, #0000ff;
 	transition-timing-function: $timing;
 }
 
-// Typography
-@mixin typography($size, $height: 1) {
-	font-size: $size;
-	line-height: $height;
+//// Typography
+@mixin typography($size, $height: null) {
+	@include toRem("font-size", $size);
+	@if $height {
+		line-height: calc($height / $size); // values given in px
+	} @else {
+		line-height: 1;
+	}
 }
 
+//// Positioning
 // Flex
-@mixin flex($align: null, $justify: null) {
+@mixin flex($align: null, $justify: null, $direction: null) {
 	display: flex;
 	@if $align {
 		align-items: $align;
@@ -44,6 +49,10 @@ $values: #ff0000, #00ff00, #0000ff;
 
 	@if $justify {
 		justify-content: $justify;
+	}
+
+	@if $direction {
+		flex-direction: $direction;
 	}
 }
 
