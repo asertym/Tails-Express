@@ -26,7 +26,7 @@ Some of the **key features** of Tails Express include:
 
 ## Dependencies
 
-- nodejs (version 12+)
+- nodejs (version 16+)
 
 ## Usage
 
