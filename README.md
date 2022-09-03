@@ -30,7 +30,7 @@ Some of the **key features** of Tails Express include:
 
 ## Usage
 
-1. Copy all files to your own project folder.
+1. Clone the repo or copy to your project folder.
 2. Open `package.json` and fill with correct data (`name`, `description`, `repository` and `author`).
 3. Run `npm install`.
 4. Done.
