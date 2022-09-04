@@ -1,5 +1,22 @@
-node_modules
+### Project ###
+
 build
+
+### Node.js ###
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+pids
+logs
+results
+npm-debug.log
+node_modules
+.npm
 
 ### Sass ###
 .sass-cache/
@@ -9,15 +26,17 @@ build
 .settings/
 .vscode/
 
-# Optional npm cache directory
-.npm
-
 ### OSX ###
 .DS_Store
 .AppleDouble
 .LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
 
 ### Windows ###
-# Windows image file caches
 Thumbs.db
 ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/

@@ -78,6 +78,7 @@ gulp.task('html', function () {
 		.pipe(gulp.dest(PATH.build)); // output destination
 });
 
+// Styles
 gulp.task('styles', function () {
 	const stylesPath = PATH.assets + PATH.styles;
 	return gulp
@@ -102,6 +103,7 @@ gulp.task('styles', function () {
 		.pipe(browser.stream());
 });
 
+// Images
 gulp.task('images', () => {
 	const imagesPath = PATH.assets + PATH.images;
 	return gulp
@@ -111,6 +113,7 @@ gulp.task('images', () => {
 		);
 });
 
+// Icons
 gulp.task('icons', () => {
 	const iconsPath = PATH.assets + PATH.icons;
 	return gulp
@@ -120,6 +123,7 @@ gulp.task('icons', () => {
 		);
 });
 
+// Fonts
 gulp.task('fonts', () => {
 	return gulp
 		.src(PATH.source + PATH.assets + PATH.fonts + '**')
@@ -127,12 +131,14 @@ gulp.task('fonts', () => {
 		);
 });
 
+// Scripts
 gulp.task('scripts', function () {
 	const scriptsPath = PATH.assets + PATH.scripts;
 	const wpConfigMode = getMode() === 'prod' ? 'prod' : 'dev';
 	const wpConfig = require('./webpack.' + wpConfigMode + '.js');
 	const dropConsole = getDropConsole();
 
+	// Run if production
 	if (wpConfigMode === 'prod') {
 		wpConfig.optimization.minimizer.push(
 			new TerserPlugin({
@@ -222,5 +228,5 @@ gulp.task('buildAssets', gulp.parallel('styles', 'images', 'icons', 'scripts'));
 gulp.task('rebuildAssets', gulp.series('cleanAssets', 'buildAssets'));
 gulp.task('build', gulp.series('rebuildAssets', 'html'));
 gulp.task('min', gulp.parallel('purgehtml')); // TODO: add assets
-gulp.task('run', gulp.series('build', 'pack'));
+gulp.task('watch', gulp.series('build', 'pack'));
 gulp.task('publish', gulp.series('build', 'min'));
