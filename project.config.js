@@ -11,11 +11,11 @@ module.exports = {
 			// Use for setting globally accessible variables
 			tails: {
 				// Projects folders
-				assets: "/assets/",
-				styles: "/assets/styles/",
-				scripts: "/assets/scripts/",
-				images: "/assets/images/",
-				icons: "/assets/icons/",
+				assets: "/assets",
+				styles: "/assets/styles",
+				scripts: "/assets/scripts",
+				images: "/assets/images",
+				icons: "/assets/icons",
 
 				// Project Specific
 				gtag: "",

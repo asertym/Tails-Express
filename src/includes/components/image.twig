@@ -1,6 +1,6 @@
-{% set source = external ? image : tails.images ~ image %}
+{% set source = external ? image : tails.images ~ '/' ~ image %}
 {% if lazy|default(true) %}
-<img class="lazyload {{class}}" data-sizes="auto" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP08ir4DwAD7wIFQDwd0wAAAABJRU5ErkJggg==" data-src="{{source}}" alt="{{alt}}">
+	<img class="lazyload {{class}}" data-sizes="auto" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP08ir4DwAD7wIFQDwd0wAAAABJRU5ErkJggg==" data-src="{{source}}" alt="{{alt}}">
 {% else %}
-<img class="{{class}}" src="{{source}}" alt="{{alt}}">
+	<img class="{{class}}" src="{{source}}" alt="{{alt}}">
 {% endif %}

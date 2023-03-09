@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
 	<head>
-		{% include 'meta.twig' with {
+		{% include 'partials/meta.twig' with {
 			title: "Welcome to Tails Express",
 			description: "",
 			keywords: "",
@@ -13,8 +12,14 @@
 			author: "",
 		} %}
 
-		{% include 'styles.twig' %}
+		{% include 'partials/styles.twig' %}
+		{% include "partials/project-config.twig" %}
 	</head>
 
 	<body>
 		<div class="page">
+			{% block body %}{% endblock %}
+		</div>
+		<script type="module" src="{{ tails.scripts }}/main.js"></script>
+	</body>
+</html>
