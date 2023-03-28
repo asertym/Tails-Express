@@ -5,7 +5,6 @@ const gulp = require('gulp');
 const changed = require('gulp-changed');
 const webpack = require('webpack-stream');
 const TerserPlugin = require('terser-webpack-plugin');
-// const cache = require('gulp-cache');
 const argv = require('yargs').argv;
 const plumber = require('gulp-plumber');
 const notify = require('gulp-notify');
@@ -14,16 +13,17 @@ const fs = require('fs');
 const gulpif = require('gulp-if');
 const path = require('path');
 const browser = require('browser-sync').create();
-// const log = require('fancy-log');
+
 // HTML related
 const twig = require('gulp-twig');
 const htmlmin = require('gulp-htmlmin');
+
 // CSS related
 const sass = require('gulp-sass')(require('sass'));
 const sassGlob = require('gulp-sass-glob');
 const postcss = require('gulp-postcss');
 const sourcemaps = require('gulp-sourcemaps');
-const purgecss = require('gulp-purgecss'); // gulp-clean-css
+
 // JS & Assets related
 // Directories
 const PATH = {
@@ -57,11 +57,11 @@ const onError = function (err) {
 	this.emit('end');
 };
 
-function getMode () {
+function getMode() {
 	return argv.mode;
 }
 
-function getDropConsole () {
+function getDropConsole() {
 	return argv.dropConsole;
 }
 
@@ -69,34 +69,27 @@ function getDropConsole () {
 gulp.task('html', function () {
 	return gulp
 		.src(PATH.source + '*.twig') // source
+		.pipe(changed(PATH.source + '*.twig'))
 		.pipe(twig(PROJECT_CONFIG.twig)) // twig config
-		.pipe(
-			plumber({
-				errorHandler: onError,
-			}),
-		)
+		.pipe(plumber({ errorHandler: onError }))
 		.pipe(gulp.dest(PATH.build)); // output destination
 });
 
 // Styles
 gulp.task('styles', function () {
 	const stylesPath = PATH.assets + PATH.styles;
+	const isProd = getMode() === 'prod';
+
 	return gulp
 		.src(PATH.source + stylesPath + '**/*.scss') // source
-		.pipe(
-			plumber({
-				errorHandler: onError,
-			}),
-		)
+		.pipe(plumber({ errorHandler: onError }))
 		.pipe(changed(PATH.source + stylesPath + '**/*.scss'))
 		.pipe(sourcemaps.init())
 		.pipe(sassGlob())
 		.pipe(sass({
 			includePaths: ['node_modules'],
-			errLogToConsole: true,
-			outputStyle: 'compressed',
-		}),
-		)
+			outputStyle: isProd ? 'compressed' : 'expanded',
+		}).on('error', sass.logError))
 		.pipe(postcss())
 		.pipe(sourcemaps.write(PATH.maps))
 		.pipe(gulp.dest(PATH.build + stylesPath)) // output
@@ -168,7 +161,7 @@ gulp.task('scripts', function () {
 		.pipe(browser.stream());
 });
 
-function initBrowserSync () {
+function initBrowserSync() {
 	const browserConfig = PROJECT_CONFIG.browserSync;
 	browser.init({
 		// Edit in project.config.js
@@ -196,17 +189,13 @@ gulp.task('pack', function () {
 	gulp.watch([
 		PATH.source + PATH.assets + PATH.styles,
 		'tailwind.config.js',
-		PATH.source + '*.twig',
-		PATH.source + PATH.includes + '**/*.twig',
-		PATH.source + PATH.partials + '**/*.twig',
+		PATH.source + '**/*.twig',
 	], gulp.series('styles'));
 	for (const prop in assetsList) {
 		gulp.watch(assetsList[prop], gulp.series(prop, 'html'));
 	}
 	gulp.watch([
-		PATH.source + '*.twig',
-		PATH.source + PATH.includes + '**/*.twig',
-		PATH.source + PATH.partials + '**/*.twig',
+		PATH.source + '**/*.twig',
 	], gulp.series('html')).on('change', browser.reload);
 });
 
