@@ -1,4 +1,4 @@
-<!-- Tails Express v2.1.1.230309 -->
+<!-- Tails Express v2.1.2.230323 -->
 
 # Tails Express
 
@@ -37,13 +37,13 @@ Some of the **key features** of Tails Express include:
 
 ## Gulp commands
 
-| Command              | Description                               |
-| -------------------- | ----------------------------------------- |
-| `gulp build`         | Cleans and rebuilds assets, builds HTML   |
-| `gulp rebuildAssets` | Clean all files from `build/assets`       |
-| `gulp min`           | Minify for production                     |
-| `gulp run`           | Build all files and start live server     |
-| `gulp publish`       | Build all files and minify for production |
+| Command          | Description                               |
+| ---------------- | ----------------------------------------- |
+| `gulp build`     | Cleans and rebuilds assets, builds HTML   |
+| `gulp clean`     | Clean all files from `build/assets`       |
+| `gulp purgehtml` | Minify for production                     |
+| `gulp watch`     | Build all files and start live server     |
+| `gulp publish`   | Build all files and minify for production |
 
 ## Contributing
 

@@ -193,6 +193,5 @@ gulp.task('buildAssets', gulp.parallel('styles', 'images', 'icons', 'scripts'));
 
 // Launcher
 gulp.task('build', gulp.series('buildAssets', 'html'));
-gulp.task('min', gulp.parallel('purgehtml'));
 gulp.task('watch', gulp.series('build', 'pack'));
 gulp.task('publish', gulp.series('clean', 'buildAssets', 'html', 'min'));
