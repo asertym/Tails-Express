@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-
-		{% include '../meta.twig' with {
+		{% include '../partials/meta.twig' with {
 			title: "Welcome to Tails Express",
 			description: "",
 			keywords: "",
@@ -12,20 +11,14 @@
 			image: "",
 			author: ""
 		} %}
-
-		{% include '../styles.twig' %}
-
-		{% include "../project-config.twig" %}
-
+		{% include '../partials/styles.twig' %}
+		{% include "../partials/project-config.twig" %}
 	</head>
-
 	<body>
-
-		<div class="page"> 
+		<div class="page">
 
 			{% block body %}{% endblock %}
-			
-		</div>
 
+		</div>
 	</body>
 </html>

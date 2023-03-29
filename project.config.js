@@ -17,6 +17,10 @@ module.exports = {
 				images: "assets/images",
 				icons: "assets/icons",
 
+				includes: "includes",
+				layouts: "layouts",
+				partials: "partials",
+
 				// Project Specific
 				gtag: "",
 
