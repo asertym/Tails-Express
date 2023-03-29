@@ -4,7 +4,6 @@
 const gulp = require('gulp');
 const changed = require('gulp-changed');
 const webpack = require('webpack-stream');
-const TerserPlugin = require('terser-webpack-plugin');
 const argv = require('yargs').argv;
 const plumber = require('gulp-plumber');
 const notify = require('gulp-notify');
@@ -25,6 +24,8 @@ const postcss = require('gulp-postcss');
 const sourcemaps = require('gulp-sourcemaps');
 
 // JS & Assets related
+const imagemin = require('gulp-imagemin');
+const uglify = require('gulp-uglify');
 // Directories
 const PATH = {
 	build: 'build/',
@@ -61,9 +62,7 @@ function getMode() {
 	return argv.mode;
 }
 
-function getDropConsole() {
-	return argv.dropConsole;
-}
+const isProd = getMode() === 'prod';
 
 // Compile Twig to HTML
 gulp.task('html', function () {
@@ -78,7 +77,6 @@ gulp.task('html', function () {
 // Styles
 gulp.task('styles', function () {
 	const stylesPath = PATH.assets + PATH.styles;
-	const isProd = getMode() === 'prod';
 
 	return gulp
 		.src(PATH.source + stylesPath + '**/*.scss') // source
@@ -102,6 +100,7 @@ gulp.task('images', () => {
 	return gulp
 		.src(PATH.source + imagesPath + '**/*')
 		.pipe(changed(PATH.build + imagesPath))
+		.pipe(gulpif(isProd, imagemin()))
 		.pipe(gulp.dest(PATH.build + imagesPath),
 		);
 });
@@ -112,6 +111,7 @@ gulp.task('icons', () => {
 	return gulp
 		.src(PATH.source + iconsPath + '**/*')
 		.pipe(changed(PATH.build + iconsPath))
+		.pipe(gulpif(isProd, imagemin()))
 		.pipe(gulp.dest(PATH.build + iconsPath),
 		);
 });
@@ -129,32 +129,10 @@ gulp.task('scripts', function () {
 	const scriptsPath = PATH.assets + PATH.scripts;
 	const wpConfigMode = getMode() === 'prod' ? 'prod' : 'dev';
 	const wpConfig = require('./webpack.' + wpConfigMode + '.js');
-	const dropConsole = getDropConsole();
-
-	// Run if production
-	if (wpConfigMode === 'prod') {
-		wpConfig.optimization.minimizer.push(
-			new TerserPlugin({
-				terserOptions: {
-					format: {
-						comments: false,
-					},
-					compress: {
-						drop_console: dropConsole,
-					},
-				},
-				extractComments: false,
-			}),
-		);
-	}
 
 	return gulp
 		.src(PATH.source + scriptsPath + '**/*.js') // source
-		.pipe(
-			plumber({
-				errorHandler: onError,
-			}),
-		)
+		.pipe(plumber({ errorHandler: onError }))
 		.pipe(changed(PATH.source + scriptsPath + '**/*.js')) // source
 		.pipe(webpack(wpConfig))
 		.pipe(gulp.dest(PATH.build + scriptsPath)) // output
@@ -207,15 +185,14 @@ gulp.task('purgehtml', () => {
 		.pipe(gulp.dest(PATH.build));
 });
 
-gulp.task('cleanAssets', () => {
-	return del(PATH.build + PATH.assets);
+gulp.task('clean', () => {
+	return del(PATH.build);
 });
 
 gulp.task('buildAssets', gulp.parallel('styles', 'images', 'icons', 'scripts'));
 
 // Launcher
-gulp.task('rebuildAssets', gulp.series('cleanAssets', 'buildAssets'));
-gulp.task('build', gulp.series('rebuildAssets', 'html'));
-gulp.task('min', gulp.parallel('purgehtml')); // TODO: add assets
+gulp.task('build', gulp.series('buildAssets', 'html'));
+gulp.task('min', gulp.parallel('purgehtml'));
 gulp.task('watch', gulp.series('build', 'pack'));
-gulp.task('publish', gulp.series('build', 'min'));
+gulp.task('publish', gulp.series('clean', 'buildAssets', 'html', 'min'));

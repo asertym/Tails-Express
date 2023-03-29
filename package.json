@@ -52,14 +52,15 @@
 		"gulp-changed": "^4.0.3",
 		"gulp-htmlmin": "^5.0.1",
 		"gulp-if": "^3.0.0",
+		"gulp-imagemin": "^7.1.0",
 		"gulp-notify": "^4.0.0",
 		"gulp-plumber": "^1.2.1",
 		"gulp-postcss": "^9.0.1",
-		"gulp-rename": "^2.0.0",
 		"gulp-sass": "^5.1.0",
 		"gulp-sass-glob": "^1.1.0",
 		"gulp-sourcemaps": "^3.0.0",
 		"gulp-twig": "^1.2.0",
+		"gulp-uglify": "^3.0.2",
 		"lazysizes": "^5.3.2",
 		"postcss-import": "^14.1.0",
 		"sass": "^1.49.9",
@@ -67,8 +68,5 @@
 		"terser-webpack-plugin": "^5.3.6",
 		"webpack-merge": "^5.8.0",
 		"webpack-stream": "^7.0.0"
-	},
-	"devDependencies": {
-		"gulp-cache": "^1.1.3"
 	}
 }
