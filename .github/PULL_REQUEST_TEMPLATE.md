@@ -6,6 +6,6 @@
 
 It's never a fun experience to have your pull request declined after investing a lot of time and effort into a new feature. To avoid this from happening, we request that contributors create an issue to first discuss any significant new features. This includes things like adding new features, optimizations, etc.
 
-https://github.com/tailwindcss/tailwindcss/blob/master/.github/CONTRIBUTING.md
+https://github.com/asertym/Tails-Express/blob/main/.github/CONTRIBUTING.md
 
 -->
