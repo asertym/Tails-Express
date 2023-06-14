@@ -48,3 +48,7 @@ Some of the **key features** of Tails Express include:
 ## Contributing
 
 If you're interested in contributing to Tails or Tails Express, please read our [contributing docs](https://github.com/asertym/Tails-Express/blob/master/.github/CONTRIBUTING.md) **before submitting a pull request**.
+
+## Sponsors
+
+The best you could do to support me and the project is to share it with others! The more the merrier! If you really like my idea then you could [buy me a beer! 🍺](https://buymeacoffee.com/asertym)

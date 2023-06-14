@@ -3,7 +3,7 @@ module.exports = {
 	browserSync: {
 		localUrl: "test.devlocal", // Specify the local url for the project (this will enable the BrowserSync plugin and let you test the project on various devices simultaneously)
 		open: true, // Decide which URL to open automatically when Browsersync starts. Defaults to "local" if none set.
-		ghostMode: false, // CClicks, Scrolls & Form inputs on any device will be mirrored to all others.
+		ghostMode: false, // Clicks, Scrolls & Form inputs on any device will be mirrored to all others.
 	},
 
 	twig: {
