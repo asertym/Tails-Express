@@ -24,7 +24,6 @@ const postcss = require('gulp-postcss');
 const sourcemaps = require('gulp-sourcemaps');
 
 // JS & Assets related
-const imagemin = require('gulp-imagemin');
 const uglify = require('gulp-uglify');
 // Directories
 const PATH = {
@@ -95,23 +94,25 @@ gulp.task('styles', function () {
 });
 
 // Images
-gulp.task('images', () => {
+gulp.task('images', async () => {
+	const imagemin = (await import('imagemin')).default;
 	const imagesPath = PATH.assets + PATH.images;
 	return gulp
 		.src(PATH.source + imagesPath + '**/*')
 		.pipe(changed(PATH.build + imagesPath))
-		.pipe(gulpif(isProd, imagemin()))
+		.pipe(gulpif(isProd, imagemin([PATH.images + `*.{jpg, png}`])))
 		.pipe(gulp.dest(PATH.build + imagesPath),
 		);
 });
 
 // Icons
-gulp.task('icons', () => {
+gulp.task('icons', async () => {
+	const imagemin = (await import('imagemin')).default;
 	const iconsPath = PATH.assets + PATH.icons;
 	return gulp
 		.src(PATH.source + iconsPath + '**/*')
 		.pipe(changed(PATH.build + iconsPath))
-		.pipe(gulpif(isProd, imagemin()))
+		.pipe(gulpif(isProd, imagemin([PATH.icons + `*.{svg}`])))
 		.pipe(gulp.dest(PATH.build + iconsPath),
 		);
 });
