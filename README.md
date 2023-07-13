@@ -37,13 +37,15 @@ Some of the **key features** of Tails Express include:
 
 ## Gulp commands
 
-| Command          | Description                               |
-| ---------------- | ----------------------------------------- |
-| `gulp build`     | Cleans and rebuilds assets, builds HTML   |
-| `gulp clean`     | Clean all files from `build/assets`       |
-| `gulp purgehtml` | Minify for production                     |
-| `gulp watch`     | Build all files and start live server     |
-| `gulp publish`   | Build all files and minify for production |
+Scripts in Tails Express have two variations: prod and dev. By default, when you run most of the tasks they're run in dev mode, to specify production running scripts just follow the script title with :prod. (e.g. npm run watch:prod)
+
+| Command           | Description                                                   |
+| ----------------- | ------------------------------------------------------------- |
+| `npm run build`   | Cleans and rebuilds assets, builds HTML                       |
+| `npm run clean`   | Clean all files from `build/assets`                           |
+| `npm run watch`   | Build all files and start live server                         |
+| `npm run publish` | Build all files and minify for production                     |
+| `npm run rebuild` | rebuilds all assets (also minifies if rebuild:prod is called) |
 
 ## Contributing
 
